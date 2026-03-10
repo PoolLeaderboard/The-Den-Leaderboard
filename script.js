@@ -1,7 +1,6 @@
 const ladder = document.getElementById('ladder');
 
 // Example 50 players
-let players = [];
 for(let i=1;i<=50;i++){
   players.push({
    const sheetURL =
