@@ -1,0 +1,48 @@
+body{
+  background:#0f0f0f;
+  color:white;
+  font-family:Arial, sans-serif;
+  text-align:center;
+}
+
+header h1{
+  color:#d4af37;
+  font-size:50px;
+  margin:10px 0;
+}
+
+header h2{
+  color:#0c5f3b;
+  font-size:30px;
+  margin:5px 0 20px 0;
+}
+
+table{
+  margin:auto;
+  border-collapse:collapse;
+  width:80%;
+}
+
+th, td{
+  padding:10px;
+  border-bottom:1px solid #333;
+}
+
+th{
+  color:#0c5f3b;
+}
+
+.rank1{
+  color:gold;
+  font-weight:bold;
+}
+
+.rules{
+  margin-top:40px;
+  background:#111;
+  padding:20px;
+  width:50%;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius:10px;
+}
