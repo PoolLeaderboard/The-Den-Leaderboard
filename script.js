@@ -3,7 +3,7 @@ const sheetURL = "https://opensheet.elk.sh/1qGYPEr2Z1I15tHtubQ8r0M0rP1uYurYa_Rqv
 const ladder = document.getElementById("ladder");
 
 async function loadPlayers() {
-  const response = await fetch(sheetURL);
+  const response = await fetch( "https://opensheet.elk.sh/1qGYPEr2Z1I15tHtubQ8r0M0rP1uYurYa_RqvEZ98cHw/Sheet1");
   const players = await response.json();
 
   ladder.innerHTML = `
