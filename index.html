@@ -33,20 +33,13 @@
   <!-- Load your existing script.js -->
   <script src="script.js"></script>
 
- <script>
-  function updateKingOfTheTable() {
-    // Grab the first data row (rank 1) from the ladder table
-    const firstRow = document.querySelector("#ladder tr:nth-child(2) td:nth-child(2)");
-    if (firstRow) {
-      document.getElementById("king").textContent = firstRow.textContent + " 👑";
-    }
+<script>
+window.onload = function() {
+  const firstRow = document.querySelector("#ladder tr:nth-child(2) td:nth-child(2)");
+  if (firstRow) {
+    document.getElementById("king").textContent = firstRow.textContent + " 👑";
   }
-
-  // Run it once after page loads
-  setTimeout(updateKingOfTheTable, 100);
-
-  // Optional: refresh every 5 seconds if ladder updates dynamically
-  setInterval(updateKingOfTheTable, 5000);
+};
 </script>
 </body>
 </html>
