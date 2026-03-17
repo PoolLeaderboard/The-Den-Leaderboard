@@ -29,6 +29,19 @@
     <p>• Stats always update</p>
     <p>• One challenge per day</p>
   </div>
+  // Update King of the Table dynamically
+function updateKingOfTheTable(leaderboard) {
+  const kingPlayer = leaderboard.find(player => Number(player.rank) === 1);
+  const kingElement = document.getElementById("king");
+  if (kingPlayer) {
+    kingElement.textContent = kingPlayer.name + " 👑";
+  } else {
+    kingElement.textContent = "-";
+  }
+}
+
+// Call this AFTER your leaderboard data is loaded
+updateKingOfTheTable(leaderboard);
 <script src="script.js"></script>
 <script src="script.js"></script>
 </body>
