@@ -8,8 +8,7 @@
   <header>
     <h1>THE DEN</h1>
     <h2>Pool Ladder</h2>
-  
-
+    <p>King of the Table: <span id="king">-</span></p>
   </header>
 
   <table id="ladder">
@@ -30,5 +29,35 @@
     <p>• Stats always update</p>
     <p>• One challenge per day</p>
   </div>
-  
-  
+
+  <!-- Load your existing script.js as usual -->
+  <script src="script.js"></script>
+
+  <script>
+    // ===============================
+    // Add this at the end of your existing script.js
+    // It only updates King of the Table dynamically
+    // ===============================
+
+    function updateKingOfTheTable() {
+      // 'leaderboard' should already exist in your GitHub code
+      // Make sure this runs AFTER your table is rendered
+      if (typeof leaderboard !== "undefined") {
+        const kingPlayer = leaderboard.find(p => Number(p.rank) === 1);
+        const kingElement = document.getElementById("king");
+        kingElement.textContent = kingPlayer ? kingPlayer.name + " 👑" : "-";
+      }
+    }
+
+    // Hook into your existing render function or call after table is built
+    // Example: if you have a function renderLeaderboard(data)
+    // call updateKingOfTheTable() at the end of it:
+
+    // If renderLeaderboard already runs on load:
+    setTimeout(updateKingOfTheTable, 100); // ensures it runs after table renders
+
+    // Optional: refresh every 10s for live updates
+    setInterval(updateKingOfTheTable, 10000);
+  </script>
+</body>
+</html>
