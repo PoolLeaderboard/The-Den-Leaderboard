@@ -31,7 +31,6 @@ async function loadPlayers() {
 }
 
 loadPlayers();
-
 <script>
 // Simple King of the Table update from rank 1 (B2)
 document.getElementById("king").textContent = document.querySelector("#ladder tr:nth-child(2) td:nth-child(2)").textContent + " 👑";
