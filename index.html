@@ -30,6 +30,53 @@
     <p>• One challenge per day</p>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // --- CONFIG: Your Google Sheet URL (public CSV/JSON) ---
+    const SHEET_URL = "https://opensheet.elk.sh/1qGYPEr2Z1I15tHtubQ8r0M0rP1uYurYa_RqvEZ98cHw/Sheet1";
+
+    async function loadLadder() {
+      try {
+        const res = await fetch(SHEET_URL);
+        const data = await res.json();
+
+        const table = document.getElementById("ladder");
+
+        // Remove old rows (except header)
+        table.querySelectorAll("tr:not(:first-child)").forEach(r => r.remove());
+
+        // Sort by Rank (just in case)
+        data.sort((a,b) => Number(a.Rank) - Number(b.Rank));
+
+        // Populate table
+        data.forEach(player => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${player.Rank}</td>
+            <td>${player.Player}</td>
+            <td>${player.Wins}</td>
+            <td>${player.Losses}</td>
+            <td>${player.Streak}</td>
+          `;
+          table.appendChild(row);
+        });
+
+        // Update King of the Table (rank 1)
+        const king = data.find(p => Number(p.Rank) === 1);
+        if (king) {
+          document.getElementById("king").textContent = king.Player + " 👑";
+        }
+
+      } catch (err) {
+        console.error("Error loading ladder:", err);
+      }
+    }
+
+    // Load ladder immediately
+    loadLadder();
+
+    // Refresh every 10 seconds in case sheet updates
+    setInterval(loadLadder, 10000);
+  </script>
+
 </body>
 </html>
