@@ -30,34 +30,34 @@
     <p>• One challenge per day</p>
   </div>
 
-  <!-- Load your existing script.js as usual -->
+  <!-- Load your existing script.js -->
   <script src="script.js"></script>
 
   <script>
-    // ===============================
-    // Add this at the end of your existing script.js
-    // It only updates King of the Table dynamically
-    // ===============================
-
+    // --- DYNAMIC KING OF THE TABLE ---
+    // This runs after your existing ladder rendering
     function updateKingOfTheTable() {
-      // 'leaderboard' should already exist in your GitHub code
-      // Make sure this runs AFTER your table is rendered
-      if (typeof leaderboard !== "undefined") {
+      // Your GitHub code must already have 'leaderboard' array
+      if (typeof leaderboard !== "undefined" && leaderboard.length > 0) {
         const kingPlayer = leaderboard.find(p => Number(p.rank) === 1);
         const kingElement = document.getElementById("king");
         kingElement.textContent = kingPlayer ? kingPlayer.name + " 👑" : "-";
       }
     }
 
-    // Hook into your existing render function or call after table is built
-    // Example: if you have a function renderLeaderboard(data)
-    // call updateKingOfTheTable() at the end of it:
-
-    // If renderLeaderboard already runs on load:
-    setTimeout(updateKingOfTheTable, 100); // ensures it runs after table renders
-
-    // Optional: refresh every 10s for live updates
-    setInterval(updateKingOfTheTable, 10000);
+    // --- Hook into your existing render function ---
+    // If your GitHub code has something like renderLeaderboard(data):
+    // call this at the very end of that function
+    if (typeof renderLeaderboard === "function") {
+      const originalRender = renderLeaderboard;
+      renderLeaderboard = function(data) {
+        originalRender(data);       // render the table exactly as before
+        updateKingOfTheTable();    // then update King of the Table
+      };
+    } else {
+      // Fallback: just call every 1s after page load
+      setInterval(updateKingOfTheTable, 1000);
+    }
   </script>
 </body>
 </html>
