@@ -30,31 +30,6 @@
     <p>• One challenge per day</p>
   </div>
 
-  <!-- Load your existing script.js -->
   <script src="script.js"></script>
-
-<script>
-window.addEventListener("load", function () {
-
-  function updateKing() {
-    const row = document.querySelector("#ladder tr:nth-child(2)");
-
-    // ONLY run if the row actually exists
-    if (row) {
-      const nameCell = row.querySelector("td:nth-child(2)");
-      if (nameCell) {
-        document.getElementById("king").textContent = nameCell.textContent + " 👑";
-      }
-    }
-  }
-
-  // Run once after load
-  setTimeout(updateKing, 500);
-
-  // Keep trying every 2 seconds (for async loading)
-  setInterval(updateKing, 2000);
-
-});
-</script>
 </body>
 </html>
