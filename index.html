@@ -59,7 +59,10 @@
           `;
           table.appendChild(row);
         });
-
+// Update King of the Table safely
+const king = data.find(p => Number(p.Rank) === 1);
+if (king) document.getElementById("king").textContent = king.Player + " 👑";
+        
         // Update King of the Table (rank 1)
         const king = data.find(p => Number(p.Rank) === 1);
         if (king) {
