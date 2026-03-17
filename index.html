@@ -33,31 +33,20 @@
   <!-- Load your existing script.js -->
   <script src="script.js"></script>
 
-  <script>
-    // --- DYNAMIC KING OF THE TABLE ---
-    // This runs after your existing ladder rendering
-    function updateKingOfTheTable() {
-      // Your GitHub code must already have 'leaderboard' array
-      if (typeof leaderboard !== "undefined" && leaderboard.length > 0) {
-        const kingPlayer = leaderboard.find(p => Number(p.rank) === 1);
-        const kingElement = document.getElementById("king");
-        kingElement.textContent = kingPlayer ? kingPlayer.name + " 👑" : "-";
-      }
+ <script>
+  function updateKingOfTheTable() {
+    // Grab the first data row (rank 1) from the ladder table
+    const firstRow = document.querySelector("#ladder tr:nth-child(2) td:nth-child(2)");
+    if (firstRow) {
+      document.getElementById("king").textContent = firstRow.textContent + " 👑";
     }
+  }
 
-    // --- Hook into your existing render function ---
-    // If your GitHub code has something like renderLeaderboard(data):
-    // call this at the very end of that function
-    if (typeof renderLeaderboard === "function") {
-      const originalRender = renderLeaderboard;
-      renderLeaderboard = function(data) {
-        originalRender(data);       // render the table exactly as before
-        updateKingOfTheTable();    // then update King of the Table
-      };
-    } else {
-      // Fallback: just call every 1s after page load
-      setInterval(updateKingOfTheTable, 1000);
-    }
-  </script>
+  // Run it once after page loads
+  setTimeout(updateKingOfTheTable, 100);
+
+  // Optional: refresh every 5 seconds if ladder updates dynamically
+  setInterval(updateKingOfTheTable, 5000);
+</script>
 </body>
 </html>
